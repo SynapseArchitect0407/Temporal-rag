@@ -1,0 +1,33 @@
+# === Environment & Virtual Envs ===
+# This ignores your specific Termux environment so others don't get your local setup
+.tr_alpha_env/
+venv/
+ENV/
+.env
+
+# === Python Artifacts ===
+# Temporary files Python creates while running your Swarm
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# === Data & Storage ===
+# We don't want to upload 10,000 test nodes or temporary vector indices
+*.log
+*.jsonl
+data/
+temp_storage/
+vector_indices/
+
+# === System Specific (Mobile/Termux) ===
+# Ignores hidden system files
+.DS_Store
+.thumbnails/
+.bash_history
+
+# === Distribution / Packaging ===
+# If you ever turn this into a library (wheel)
+dist/
+build/
+*.egg-info/
