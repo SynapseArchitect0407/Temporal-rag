@@ -142,14 +142,18 @@ The entire system was developed and stress-tested in a **mobile terminal environ
 Using a sliding-window pruning mechanism, the **Architect Agent** performs context condensation. This ensures that the final brief contains the highest possible information density while staying within strict token limits for executive decision-making.
 
 
-### 📺 **System Validation & Live Demonstration**
+### 📺 **System Core & Logic Validation**
 
-To demonstrate the high-velocity retrieval and agentic orchestration of the **Veritas Swarm**, I have recorded a live trace of the engine operating within a mobile terminal environment.
+To provide empirical evidence of the architecture, this demonstration walkthrough showcases the **Veritas Swarm** directory structure and the underlying logic of the `verifier.py` module.
 
-[Insert Video/Link Here]
+**[The video link for 2575.mp4 goes here]**
 
-**What to observe in the demo:**
-* **Nanosecond Latency:** Notice the speed of the Scout Agent during the discovery phase.
-* **Telemetry Clarity:** Watch the CLI output as the Chronos Agent applies the Stability Shield to protect foundational data nodes.
-* **Context Condensation:** Observe the Architect Agent pruning the final synthesis for maximum information density.
+**What to observe in this technical walkthrough:**
+* **Directory Architecture:** A look at the modular structure (`node.py`, `chunk.py`, `score.py` etc.) optimized for ARM-native environments.
+* **The Verifier Logic (`verifier.py`):** Observation of the agentic validation layer that handles cross-stream heuristic searches.
+* **Execution Script (`video_demo.py`):** The implementation of the demonstration harness used to trigger the swarm’s retrieval cycles.
   
+
+
+https://github.com/user-attachments/assets/8a85d36e-5d73-4235-8a7b-ad962f97cbb3
+
