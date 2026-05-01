@@ -55,62 +55,50 @@ The final layer of the swarm, the **Architect**, takes the verified, time-weight
 ### 🛡️ The Stability Shield (Drift Resistance)
 At the core of this architecture is the **Stability Shielding** logic. This ensures that foundational "Strategic Markers" are not lost to time. By applying a stability bias to high-relevance nodes, the swarm preserves core truths (SHIELDED) while allowing transient data to age naturally (DECAYED).
 
+
+## Flow diagram 
+The system is an agent-led filtration pipeline that converts raw data into verified intelligence.
+
 ```mermaid
-graph TD
-    %% Define Node Styles
-    classDef storage fill:#333,stroke:#666,stroke-width:2px,color:white,rx:5,ry:5;
-    classDef agent fill:#1a1a1a,stroke:#c792ea,stroke-width:2px,color:#c792ea,font-weight:bold,rx:15,ry:15;
-    classDef kernel fill:#2d2d2d,stroke:#ffcb6b,stroke-width:2px,color:#ffcb6b,stroke-dasharray: 5 5,rx:5,ry:5;
-    classDef final_output fill:#003300,stroke:#00ee00,stroke-width:3px,color:#00ee00,font-weight:bold,rx:5,ry:5;
+flowchart TD
+    classDef storage fill:#333,stroke:#666,stroke-width:2px,color:white,rx:5,ry:5
+    classDef agent fill:#1a1a1a,stroke:#c792ea,stroke-width:2px,color:#c792ea,font-weight:bold,rx:15,ry:15
+    classDef kernel fill:#2d2d2d,stroke:#ffcb6b,stroke-width:2px,color:#ffcb6b,stroke-dasharray:5 5,rx:5,ry:5
+    classDef final_output fill:#003300,stroke:#00ee00,stroke-width:3px,color:#00ee00,font-weight:bold,rx:5,ry:5
 
-    %% Data Input Phase
-    Raw_Data(Raw Text Stream):::storage -->|Commit 1: SemanticStreamer| Semantic_Shards(Semantic Chunks max 512 tokens):::storage
+    Raw_Data["Raw Text Stream"]:::storage -->|"Commit 1#58; SemanticStreamer"| Semantic_Shards["Semantic Chunks max 512 tokens"]:::storage
     
-    %% Ingestion Phase
-    Semantic_Shards -->|Commit 7: High-Precision Node Ingestion| High_Fidelity_Nodes(TemporalNodes with UUID & Nanosecond timestamps):::storage
+    Semantic_Shards -->|"Commit 7#58; High-Precision Node Ingestion"| High_Fidelity_Nodes["TemporalNodes with UUID and Nanosecond timestamps"]:::storage
 
-    %% Memory Stores
-    High_Fidelity_Nodes -->|Commit 2: Dual Stream| Ephemeral_Memory(Ephemeral Stream Decaying Vectors in NumPy):::storage
-    High_Fidelity_Nodes -->|Commit 2: Dual Stream| Persistent_Memory(Persistent Stream Long-Term Storage):::storage
+    High_Fidelity_Nodes -->|"Commit 2#58; Dual Stream"| Ephemeral_Memory["Ephemeral Stream Decaying Vectors in NumPy"]:::storage
+    High_Fidelity_Nodes -->|"Commit 2#58; Dual Stream"| Persistent_Memory["Persistent Stream Long-Term Storage"]:::storage
 
-    %% Swarm Intelligence Layer
-    User_Query(User Query):::final_output --> Scout_Agent
+    User_Query["User Query"]:::final_output --> Scout_Agent["Scout Agent Focus#58; Raw Relevance Recall"]:::agent
+    Scout_Agent -->|"Hunts potential shards"| Ephemeral_Memory
+    Scout_Agent -->|"Hunts potential shards"| Persistent_Memory
 
-    Scout_Agent(Scout Agent Focus: Raw Relevance Recall):::agent -->|Hunts potential shards| Ephemeral_Memory
-    Scout_Agent -->|Hunts potential shards| Persistent_Memory
+    Ephemeral_Memory -.->|"Potential Shards"| Chronos_Agent["Chronos Agent Focus#58; Recency Verification and Shielding"]:::agent
+    Persistent_Memory -.->|"Potential Shards"| Chronos_Agent
 
-    Ephemeral_Memory -.->|Potential Shards| Chronos_Agent
-    Persistent_Memory -.->|Potential Shards| Chronos_Agent
+    Chronos_Agent -->|"Verifies timestamps"| Temporal_Scoring_Kernel["Temporal Scoring Kernel Commit 8#58; Exponential Decay"]:::kernel
 
-    Chronos_Agent(Chronos Agent Focus: Recency Verification & Shielding):::agent -->|Verifies timestamps| Temporal_Scoring_Kernel
-
-    %% Mathematics Layer
-    subgraph Math_Framework [Mathematical Framework]
-        Temporal_Scoring_Kernel(Temporal Scoring Kernel Commit 8: Exponential Decay):::kernel -->|Computes Fused Score| Drift_Resistant_Kernel
-        Drift_Resistant_Kernel(Drift-Resistant Kernel Commit 9: Stability Bias for high-relevance facts):::kernel
+    subgraph Math_Framework ["Mathematical Framework"]
+        Temporal_Scoring_Kernel -->|"Computes Fused Score"| Drift_Resistant_Kernel["Drift-Resistant Kernel Commit 9#58; Stability Bias for high-relevance facts"]:::kernel
     end
 
-    Temporal_Scoring_Kernel -.->|Scores Shards| Chronos_Agent
-    Drift_Resistant_Kernel -.->|Shields/Decays Facts| Chronos_Agent
+    Temporal_Scoring_Kernel -.->|"Scores Shards"| Chronos_Agent
+    Drift_Resistant_Kernel -.->|"Shields or Decays Facts"| Chronos_Agent
 
-    Chronos_Agent -->|Verified Time-Weighted Shards| Architect_Agent
+    Chronos_Agent -->|"Verified Time-Weighted Shards"| Architect_Agent["Architect Agent Focus#58; Synthesis Compression and Coherence"]:::agent
 
-    %% Context Layer
-    Architect_Agent(Architect Agent Focus: Synthesis Compression & Coherence):::agent -->|Buffers MemoryNodes Commit 6: Condensation| Context_Geometry_Engine
+    Architect_Agent -->|"Buffers MemoryNodes Commit 6#58; Condensation"| Context_Geometry_Engine["Context Geometry Engine Commit 5#58; Sliding Window Pruning Commit 11#58; Temporal Lensing"]:::kernel
+    Context_Geometry_Engine -.->|"Optimized Prompt Buffer density avg. 8/100 tokens"| Architect_Agent
 
-    Context_Geometry_Engine(Context Geometry Engine Commit 5: Sliding Window Pruning Commit 11: Temporal Lensing):::kernel -.->|Optimized Prompt Buffer density avg. 8/100 tokens| Architect_Agent
+    Architect_Agent -->|"Mission-Ready Output Commit 10"| Executive_Synthesis["Final Synthesis - Veritas Swarm Verified Brief"]:::final_output
 
-    %% Final Synthesis
-    Architect_Agent -->|Mission-Ready Output Commit 10| Executive_Synthesis(Final Synthesis - Veritas Swarm Verified Brief):::final_output
-
-    %% Telemetry
-    subgraph Observability
-        Executive_Synthesis -->|Visualizing Swarm orchestration Commit 13| CLI_Visual_Timeline(Humanized CLI Telemetry):::final_output
+    subgraph Observability ["Observability"]
+        Executive_Synthesis -->|"Visualizing Swarm orchestration Commit 13"| CLI_Visual_Timeline["Humanized CLI Telemetry"]:::final_output
     end
+```
 
-    %% Link styles
-    linkStyle default stroke:#888,stroke-width:1px,color:#aaa;
-    linkStyle 0,1,2,3,4,5 stroke:#c792ea,stroke-width:2px;
-    linkStyle 8,9,11 stroke:#ffcb6b,stroke-width:2px,stroke-dasharray: 3 3;
-    linkStyle 17,18 stroke:#00ee00,stroke-width:3px;
-    ```
+
